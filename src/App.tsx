@@ -11,6 +11,12 @@ function App() {
    const disableBoard = () => {
      setIsDisabled(true);
    };
+  
+  const clickPlay = () => { 
+    const playBtn = document.querySelector(`.play-btn`) as HTMLButtonElement;
+    playBtn.style.display = 'none';
+    setOpenTab(true)
+  }
 
   return (
     <div className="App">
@@ -23,8 +29,9 @@ function App() {
           <Horizontal id={3} side="top" open={openTable} />
           <Horizontal id={4} side="bottom" open={openTable} />
         </div>
-        <button className='play-btn'
-          onClick={() => setOpenTab(true)}>Let's Play</button>
+        <button className="play-btn" onClick={() => clickPlay()}>
+          Let's Play
+        </button>
       </div>
     </div>
   );
