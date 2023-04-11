@@ -3,6 +3,7 @@ import './App.css';
 import Vertical from './components/Vertical';
 import Horizontal from "./components/Horizontal";
 import Table from './components/Table';
+import Marker from "./components/Marker";
 
 function App() {
   const [isDisabled, setIsDisabled] = useState(false);

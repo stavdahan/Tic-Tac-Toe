@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
-const emptyBoard = [
-  ['', '', ''],
-  ['', '', ''],
-  ['', '', ''],
+import React, { useEffect, useState } from "react";
+import Circle from "./Circle"
+import Ex from "./Ex";
+
+const emptyBoard: any[] = [
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""],
 ];
 
 interface tableProps {
@@ -13,10 +16,12 @@ const Table = ({ disableBoard }: tableProps) => {
   const [turn, setTurn] = useState("x");
   const [board, setBoard] = useState(emptyBoard);
 
+
   const draw = (row: number, column: number = 0) => {
     let copyBoard = [...board];
     if (copyBoard[row][column] === "") {
       copyBoard[row][column] = turn;
+      console.log(copyBoard)
       setTurn(turn === "x" ? "o" : "x");
       setBoard(copyBoard);
     }
@@ -56,19 +61,30 @@ const Table = ({ disableBoard }: tableProps) => {
     }
   };
 
+  const presentShape = (shape: string) => {
+    switch (shape) { 
+      case 'x':
+        return <Ex />;
+      case 'o':
+        return <Circle />;
+      default:
+        return "";
+    }
+  }
+
   return (
     <div className="table">
       {board.map((row, idx) => {
         return (
           <div key={idx} className="row">
-            <div className="cell disabled" onClick={() => handleClick(idx)}>
-              {row[0]}
+            <div className="cell" onClick={() => handleClick(idx)}>
+              {presentShape(row[0])}
             </div>
             <div className="cell" onClick={() => handleClick(idx, 1)}>
-              {row[1]}
+              {presentShape(row[1])}
             </div>
             <div className="cell" onClick={() => handleClick(idx, 2)}>
-              {row[2]}
+              {presentShape(row[2])}
             </div>
           </div>
         );
